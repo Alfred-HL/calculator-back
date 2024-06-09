@@ -1,6 +1,7 @@
 // 引用後端框架 express
 const express = require('express')
 const cors = require('cors')
+const route = require('./routes/index')
 
 // 建立 express 實例
 const app = express()
@@ -25,60 +26,65 @@ app.get('/', (req, res) => {
   // res.send('This is backend of Calculator.')
 })
 
+app.use(route)
+
 // 處理 GET localhost:[PORT]/plus?v1=xxx&v2=xxx 的請求
 // ex:
 // request: /plus?v1=3&v2=7
 // response: { answer: 10 }
-app.get('/plus', (req, res) => {
-  const QUERY = req.query
-  // v1 和 v2 必須為數字，目前尚未處理非數字的情況
-  const v1 = Number(QUERY.v1)
-  const v2 = Number(QUERY.v2)
-  res.json({
-    answer: v1 + v2,
-  })
-})
+// app.get('/plus', (req, res) => {
+//   const QUERY = req.query
+//   // v1 和 v2 必須為數字，目前尚未處理非數字的情況
+//   const v1 = Number(QUERY.v1)
+//   const v2 = Number(QUERY.v2)
+ 
+//   res.json({
+//     answer: v1 + v2,
+//   })
+// })
+
+
 
 // 處理 GET localhost:[PORT]/minus?v1=xxx&v2=xxx 的請求
 // ex:
 // request: /minus?v1=3&v2=7
 // response: { answer: -4 }
-app.get('/minus', (req, res) => {
-  const QUERY = req.query
-  const v1 = Number(QUERY.v1)
-  const v2 = Number(QUERY.v2)
-  res.json({
-    answer: v1 - v2,
-  })
-})
+// app.get('/minus', (req, res) => {
+//   const QUERY = req.query
+//   const v1 = Number(QUERY.v1)
+//   const v2 = Number(QUERY.v2)
+//   res.json({
+//     answer: v1 - v2,
+//   })
+// })
 
 // 處理 GET localhost:[PORT]/multiply?v1=xxx&v2=xxx 的請求
 // ex:
 // request: /multiply?v1=3&v2=7
 // response: { answer: 21 }
-app.get('/multiply', (req, res) => {
-  const QUERY = req.query
-  const v1 = Number(QUERY.v1)
-  const v2 = Number(QUERY.v2)
-  res.json({
-    answer: v1 * v2,
-  })
-})
+// app.get('/multiply', (req, res) => {
+//   const QUERY = req.query
+//   const v1 = Number(QUERY.v1)
+//   const v2 = Number(QUERY.v2)
+//   res.json({
+//     answer: v1 * v2,
+//   })
+// })
 
 // 處理 GET localhost:[PORT]/divide?v1=xxx&v2=xxx 的請求
 // ex:
 // request: /divide?v1=3&v2=7
 // response: { answer: 0.42857 }
-app.get('/divide', (req, res) => {
-  const QUERY = req.query
-  const v1 = Number(QUERY.v1)
-  const v2 = Number(QUERY.v2)
-  // 預設只保留小數點後 ROUND 位
-  const answer = Number((v1 / v2).toFixed(ROUND))
-  res.json({
-    answer,
-  })
-})
+// app.get('/divide', (req, res) => {
+//   const QUERY = req.query
+//   const v1 = Number(QUERY.v1)
+//   const v2 = Number(QUERY.v2)
+//   // 預設只保留小數點後 ROUND 位
+//   const answer = Number((v1 / v2).toFixed(ROUND))
+//   res.json({
+//     answer,
+//   })
+// })
 
 app.listen(PORT, () => {
   console.log(`express server is running on http://localhost:${PORT}`)
