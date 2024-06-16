@@ -1,7 +1,7 @@
 // 引用後端框架 express
 const express = require('express')
 const cors = require('cors')
-const route = require('./routes/index')
+const route = require('./routes')
 
 // 建立 express 實例
 const app = express()
@@ -13,7 +13,7 @@ app.use(cors())
 const PORT = 3000
 
 // 小數點後保留位數
-const ROUND = 5
+// const ROUND = 5
 
 // 處理 GET localhost:[PORT] 的請求(註：localhost:[PORT] 和 localhost:[PORT]/ 是等價的，結尾有無 / 都一樣)
 // req: 前端發送來的請求物件
