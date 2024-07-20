@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { plus, minus, multiply, divide } = require('../services/calculator')
-const { history } = require('../services/calculator')
+const { Calculator, history } = require('../services/calculator');
 const app = express()
 const ROUND = 5
 
@@ -11,13 +10,14 @@ router.get('/', (req, res) => {
   
 })
 
+const calc = new Calculator();
 
 //加法路由
 router.get('/plus', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
-  const answer = plus(v1, v2)
+  const answer = calc.plus(v1, v2)
   res.json({
     answer,
   })
@@ -28,7 +28,7 @@ router.get('/minus', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
-  const answer = minus(v1, v2)
+  const answer = calc.minus(v1, v2)
   res.json({
     answer,
   })
@@ -39,7 +39,7 @@ router.get('/multiply', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
-  const answer = multiply(v1, v2)
+  const answer = calc.multiply(v1, v2)
   res.json({
     answer,
   })
@@ -50,7 +50,7 @@ router.get('/divide', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
-  const answer = divide(v1, v2)
+  const answer = calc.divide(v1, v2)
   res.json({
     answer,
   })
