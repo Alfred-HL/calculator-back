@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { Calculator, history } = require('../services/calculator');
+const { calculate, calcHistory } = require('../services/formulaCalculate')
 const app = express()
 const ROUND = 5
 
@@ -11,6 +12,24 @@ router.get('/', (req, res) => {
 })
 
 const calc = new Calculator();
+
+//求解算式路由(+: %2B)
+router.get('/calculate', (req, res) => {
+  const QUERY = req.query
+  const answer = calculate(QUERY.formula)
+  res.json({
+    answer,
+  })
+})
+
+//求且算式歷史紀錄
+router.get('/calculate/history', (req, res) => {
+  const dataHistory = calcHistory()
+  res.json({
+    dataHistory,
+  })
+})
+
 
 //加法路由
 router.get('/plus', (req, res) => {
